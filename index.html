@@ -195,8 +195,18 @@ li { margin-bottom: 6px; }
 .contato .btn:hover { background: var(--luz); color: var(--bordo); }
 .contato .btn svg { width: 22px; height: 22px; flex: none; }
 
-footer { padding: 28px 0; font-size: .9rem; background: var(--tinta); color: var(--fundo); }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer { background: #1E1517; color: #FFF6DD; font-size: .95rem; }
+.faixa-rodape { height: 14px; background: linear-gradient(90deg, #FCE8A0 0 33.33%, #AFC3DF 33.33% 66.66%, #62242F 66.66%); }
+.rodape { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding: 56px 24px 40px; }
+.rodape-nome { font-family: var(--serif); font-size: 2.6rem; font-weight: 700; line-height: 1; margin: 0; color: #FCE8A0; }
+.rodape-sub { font-family: var(--serif); font-style: italic; font-size: 1.5rem; font-weight: 600; margin: 4px 0 0; color: #E8B4C0; }
+.rodape-titulo { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; color: #FCE8A0; margin: 0 0 12px; }
+.rodape-col p { margin: 0; }
+.rodape-col a { display: inline-flex; align-items: center; gap: 10px; color: #FFF6DD; text-decoration: none; padding: 6px 0; }
+.rodape-col a:hover { color: #FCE8A0; text-decoration: underline; }
+.rodape-col svg { width: 20px; height: 20px; flex: none; }
+.rodape-base { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; padding: 20px 24px 28px; border-top: 1px solid rgba(255, 246, 221, .15); font-size: .85rem; opacity: .85; }
+@media (max-width: 760px) { .rodape { grid-template-columns: 1fr; gap: 28px; padding: 44px 20px 32px; } .rodape-base { padding: 20px 20px 28px; } }
 
 @media (max-width: 760px) {
   .servico { grid-template-columns: 1fr; gap: 16px; padding-bottom: 36px; margin-bottom: 36px; }
@@ -356,9 +366,25 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: s
 </section>
 
 <footer>
-  <div class="wrap">
-    <span>Paola Pinheiro Beauty</span>
-    <span>© 2026</span>
+  <div class="faixa-rodape" aria-hidden="true"></div>
+  <div class="wrap rodape">
+    <div>
+      <p class="rodape-nome">Paola Pinheiro</p>
+      <p class="rodape-sub">Beauty</p>
+    </div>
+    <div class="rodape-col">
+      <p class="rodape-titulo">Fale comigo</p>
+      <a href="https://wa.me/5553984152759?text=Ol%C3%A1%2C%20Paola%20Pinheiro!%20Gostaria%20de%20marcar%20um%20hor%C3%A1rio." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.6A9 9 0 1 1 8 19.6L3 21z"/><path d="M9.5 8.5c.3 2 2 3.7 4 4.2l1-1.2 2 1-.8 1.6c-.4.6-1.2.8-1.9.5-2.8-1-4.6-2.9-5.6-5.6-.3-.7 0-1.5.6-1.9l1.6-.8 1 2z"/></svg><span>(53) 98415-2759</span></a>
+      <a href="https://www.instagram.com/ppinheiro_beauty/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg><span>@ppinheiro_beauty</span></a>
+    </div>
+    <div class="rodape-col">
+      <p class="rodape-titulo">Onde me encontrar</p>
+      <p>Edifício Orbe, Sala 716<br>Parque Una</p>
+    </div>
+  </div>
+  <div class="wrap rodape-base">
+    <span>© 2026 Paola Pinheiro Beauty</span>
+    <span>Sua beleza, sua essência, valorizadas em cada detalhe.</span>
   </div>
 </footer>
 
