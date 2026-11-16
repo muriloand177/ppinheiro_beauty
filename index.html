@@ -10,31 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --fundo: #FCE8A0;
-  --azul: #AFC3DF;
-  --bordo: #62242F;
-  --papel: #FFF8E6;
+  --fundo: #3A2A1E;
+  --azul: #2B3A52;
+  --bordo: #7A2F3D;
+  --papel: #241A17;
   --luz: #FFF6DD;
-  --tinta: #1E1517;
-  --ouro: #8A6512;
+  --tinta: #F6EBD5;
+  --ouro: #E2B94F;
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  color-scheme: light;
+  color-scheme: dark;
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --fundo: #3A2A1E;
-    --azul: #2B3A52;
-    --bordo: #7A2F3D;
-    --papel: #241A17;
-    --luz: #FFF6DD;
-    --tinta: #F6EBD5;
-    --ouro: #E2B94F;
-    color-scheme: dark;
-  }
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-padding-top: env(safe-area-inset-top, 0px); }
@@ -424,9 +412,35 @@ footer { background: #1E1517; color: #FFF6DD; font-size: .95rem; }
 <script>
 (function () {
   var trilho = document.getElementById('trilho');
+  var originais = Array.prototype.slice.call(trilho.children);
+  originais.forEach(function (f) {
+    var c = f.cloneNode(true);
+    c.setAttribute('aria-hidden', 'true');
+    trilho.appendChild(c);
+  });
+
+  var ciclo = 0;
+  function medirCiclo() {
+    var primeiroClone = trilho.children[originais.length];
+    ciclo = primeiroClone.getBoundingClientRect().left - trilho.getBoundingClientRect().left + trilho.scrollLeft;
+  }
+  medirCiclo();
+  window.addEventListener('resize', medirCiclo);
+
+  function saltar(delta) {
+    trilho.style.scrollBehavior = 'auto';
+    trilho.scrollLeft += delta;
+    trilho.style.scrollBehavior = '';
+  }
+
+  trilho.addEventListener('scroll', function () {
+    if (trilho.scrollLeft >= ciclo) saltar(-ciclo);
+    else if (trilho.scrollLeft <= 0) saltar(ciclo);
+  }, { passive: true });
+
   document.querySelectorAll('.seta').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var card = trilho.querySelector('figure');
+      var card = trilho.children[0];
       var passo = card.getBoundingClientRect().width + 20;
       trilho.scrollBy({ left: passo * Number(btn.dataset.dir), behavior: 'smooth' });
     });
